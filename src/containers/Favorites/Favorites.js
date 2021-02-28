@@ -36,7 +36,7 @@ const Favorites = () => {
 		<div>
 			<ul className="list-group">
 			{!favorites.length ? 'No Favorites Yet' : favorites.map( fav => {
-  				return <li key={fav.github_id} className="list-group-item">{fav.url}</li>
+				return <li key={fav.github_id} className="list-group-item">{fav.url}</li>
 			})}
 		</ul>
 		</div>

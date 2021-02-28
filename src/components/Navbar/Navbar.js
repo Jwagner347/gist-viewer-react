@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { 
 	Navbar,
 	Nav,
@@ -11,13 +11,21 @@ import {
 const AppNavbar = () => {
 	const textInput = React.createRef();
 	const url = 'http://localhost:3000/local/graphql';
+	let history = useHistory();
 
 	const getGists = (username) => {
 		const query = `
 		{
 			getUserGists(username: "${username}") {
 				gists {
-						url
+					id
+					description
+					created_at
+					files {
+						filename
+					}
+					html_url
+					url
 				}
 			}
 		}
@@ -28,13 +36,20 @@ const AppNavbar = () => {
 			headers: {'Content-Type': 'application/graphql'},
 			body: JSON.stringify({ query })
 		})
-		.then((res) => res.json())
-		.then(data => console.log('data', data));
+		.then((res) => res.json());
 	}
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		getGists(textInput.current.value);
+
+		getGists(textInput.current.value)
+			.then((res) => {
+				history.push({
+					pathname: "/search-results",
+					state: { data: res.data.getUserGists }
+				});
+			});
+
 	};
 
 	return (
