@@ -1,6 +1,6 @@
 # Gist Viewer React App
 
-The Gist Viewer React App is a front-end interface to search for gists from github users and view your saved favorites. It is meant to be used with the [https://github.com/Jwagner347/gist-viewer](gist-viewer) GraphQL API.
+The Gist Viewer React App is a front-end interface to search for gists from github users and view your saved favorites. It is meant to be used with the [gist-viewer](https://github.com/Jwagner347/gist-viewer) GraphQL API.
 
 ## Startup Instructions
 
